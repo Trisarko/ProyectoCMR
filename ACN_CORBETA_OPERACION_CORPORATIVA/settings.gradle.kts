@@ -1,0 +1,2 @@
+rootProject.name = "ACN_CORBETA_OPERACION_CORPORATIVA"
+
