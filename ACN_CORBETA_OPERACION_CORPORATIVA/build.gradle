@@ -1,0 +1,55 @@
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.spacialcircumstances:gradle-cucumber-reporting:0.1.25"
+    }
+}
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'java-library'
+apply plugin: "com.github.spacialcircumstances.gradle-cucumber-reporting"
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+
+dependencies {
+    testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: '7.11.1'
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '7.11.1'
+    implementation group: 'io.cucumber', name: 'cucumber-core', version: '7.11.1'
+    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.6'
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    implementation group: 'com.jayway.jsonpath', name: 'json-path', version: '2.4.0'
+    implementation group: 'com.opencsv', name: 'opencsv', version: '5.7.1'
+    implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.24'
+    implementation group: 'org.apache.commons', name: 'commons-text', version: '1.10.0'
+    implementation group: 'org.jetbrains', name: 'annotations', version: '24.0.0'
+    testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.14'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.1'
+    implementation group: 'net.serenity-bdd', name: 'serenity-screenplay', version: '3.8.1'
+    testImplementation group: 'net.serenity-bdd', name: 'serenity-ensure', version: '3.8.1'
+    implementation group: 'net.serenity-bdd', name: 'serenity-screenplay-webdriver', version: '3.8.1'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.24.2'
+    testImplementation group: 'net.serenity-bdd', name: 'serenity-cucumber', version: '3.8.1'
+
+
+}
+test {
+    useJUnit {
+        include "**/*Runner*";
+        gradle.startParameter.continueOnFailure = true
+        testLogging.showStandardStreams = true
+        systemProperties System.getProperties()
+    }
+}
+
+
